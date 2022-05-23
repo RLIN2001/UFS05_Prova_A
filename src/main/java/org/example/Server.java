@@ -8,8 +8,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static java.lang.System.exit;
 
 public class Server {
 
@@ -39,8 +45,8 @@ public class Server {
             e.printStackTrace();
         }
 
-        buildFoodList();
         System.out.println("Accettato");
+        buildFoodList();
         try {
             out =
                     new PrintWriter(clientSocket.getOutputStream(), true);
@@ -81,13 +87,14 @@ public class Server {
 
                 int index =checkExpensiveProduct();
                 json = gson.toJson(foods.get(index));
-                System.out.println(json);
+                out.println(json);
 
                 break;
             case "all":
 
                 json = gson.toJson(foods);
-                System.out.println(json);
+                out.println(json);
+
 
                 break;
 
@@ -97,7 +104,7 @@ public class Server {
 
                 break;
             default:
-                System.out.println("Invalid option!!!");
+                out.println("Invalid option!!!");
         }
 
     }
@@ -109,7 +116,7 @@ public class Server {
 
         Collections.sort(orderList);
         json = gson.toJson(orderList);
-        System.out.println(json);
+        out.println(json);
 
     }
 
@@ -130,5 +137,11 @@ public class Server {
         foods.add(new Food("Il piatto...",3,"Risotto alla milanese", 25.94));
         foods.add(new Food("Il famoso piatto...",34,"Costata", 33.0));
         foods.add(new Food("Il piatto poco famoso...",50,"Pasta con il pomodoro", 10.0));
+
+        connectionDatabase();
+    }
+
+    private static void connectionDatabase() {
+
     }
 }
