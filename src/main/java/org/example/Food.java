@@ -1,6 +1,6 @@
 package org.example;
 
-public class Food {
+public class Food implements Comparable<Food>{
     String descrizione;
     int id;
     String name;
@@ -30,4 +30,9 @@ public class Food {
     public Double getPrice() {
         return price;
     }
+
+    public int compareTo(Food food) {
+        return this.name.compareTo(food.name);
+    }
+
 }

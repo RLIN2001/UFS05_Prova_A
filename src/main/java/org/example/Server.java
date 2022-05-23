@@ -79,25 +79,51 @@ public class Server {
         switch (s) {
             case "more_expensive":
 
-
-                System.out.println("more_expensive");
-
+                int index =checkExpensiveProduct();
+                json = gson.toJson(foods.get(index));
+                System.out.println(json);
 
                 break;
             case "all":
 
-                System.out.println("all");
+                json = gson.toJson(foods);
+                System.out.println(json);
+
                 break;
 
             case "all_sorted":
                 System.out.println("all_sorted");
-
+                orderList();
 
                 break;
             default:
                 System.out.println("Invalid option!!!");
         }
 
+    }
+
+    private static void orderList() {
+        ArrayList<Food> orderList=new ArrayList<>();
+        for(Food f:foods)
+            orderList.add(f);
+
+        Collections.sort(orderList);
+        json = gson.toJson(orderList);
+        System.out.println(json);
+
+    }
+
+    private static int checkExpensiveProduct() {
+        double price=foods.get(0).getPrice();
+        int index=0;
+        for(int i=0;i<foods.size();i++) {
+            if (price<foods.get(i).getPrice())
+            {
+                price=foods.get(i).getPrice();
+                index=i;
+            }
+        }
+        return index;
     }
 
     private static void buildFoodList() {
