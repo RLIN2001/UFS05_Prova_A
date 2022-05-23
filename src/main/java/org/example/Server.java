@@ -65,13 +65,37 @@ public class Server {
         try {
             while ((s = in.readLine()) != null) {
 
-                System.out.println(s);
-                for(int i=0;i<foods.size();i++)
-                    System.out.println(foods.get(i).getName());
+
+                ControlMessage(s);
 
              }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    private static void ControlMessage(String s) {
+        switch (s) {
+            case "more_expensive":
+
+
+                System.out.println("more_expensive");
+
+
+                break;
+            case "all":
+
+                System.out.println("all");
+                break;
+
+            case "all_sorted":
+                System.out.println("all_sorted");
+
+
+                break;
+            default:
+                System.out.println("Invalid option!!!");
         }
 
     }
