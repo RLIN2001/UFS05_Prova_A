@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Server {
+
+    static ArrayList<Food> products = new ArrayList<>();
     static int portNumber = 1234;
     static PrintWriter out;
     static Gson gson = new Gson();
