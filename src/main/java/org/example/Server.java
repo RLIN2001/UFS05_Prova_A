@@ -13,7 +13,7 @@ import java.util.Collections;
 
 public class Server {
 
-    static ArrayList<Food> products = new ArrayList<>();
+    static ArrayList<Food> foods= new ArrayList<>();
     static int portNumber = 1234;
     static PrintWriter out;
     static Gson gson = new Gson();
@@ -39,7 +39,7 @@ public class Server {
             e.printStackTrace();
         }
 
-
+        buildFoodList();
         System.out.println("Accettato");
         try {
             out =
@@ -66,11 +66,19 @@ public class Server {
             while ((s = in.readLine()) != null) {
 
                 System.out.println(s);
-                //out.println(s.toUpperCase());
-            }
+                for(int i=0;i<foods.size();i++)
+                    System.out.println(foods.get(i).getName());
+
+             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private static void buildFoodList() {
+        foods.add(new Food("Il piatto...",3,"Risotto alla milanese", 25.94));
+        foods.add(new Food("Il famoso piatto...",34,"Costata", 33.0));
+        foods.add(new Food("Il piatto poco famoso...",50,"Pasta con il pomodoro", 10.0));
     }
 }
