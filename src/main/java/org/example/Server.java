@@ -63,7 +63,7 @@ public class Server {
         try {
             while ((s = in.readLine()) != null) {
 
-
+                System.out.println(s);
                 //out.println(s.toUpperCase());
             }
         } catch (IOException e) {
